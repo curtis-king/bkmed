@@ -5,16 +5,6 @@ const path = require('path');
 const db = require('./src/models');
 const { initSocket } = require('./src/socket');
 
-const isProduction = process.env.NODE_ENV === 'production';
-
-let nextApp = null;
-let handleNext = null;
-if (isProduction) {
-  const next = require('next');
-  nextApp = next({ dev: false, dir: path.join(__dirname, '../medconnect-web'), hostname: '0.0.0.0', port: process.env.PORT || 3000 });
-  handleNext = nextApp.getRequestHandler();
-}
-
 const authRoutes = require('./src/routes/auth');
 const identityRoutes = require('./src/routes/identity');
 const professionalRoutes = require('./src/routes/professional');
@@ -101,8 +91,6 @@ app.get('/', (req, res) => {
 const errorHandler = require('./src/middleware/errorHandler');
 app.use(errorHandler);
 
-// Next.js catch-all route is registered inside demarrer() after nextApp.prepare()
-
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`✓ Serveur démarré sur ${PORT}`);
 });
@@ -146,19 +134,6 @@ const demarrer = async (retries = 5) => {
     const startAppointmentScheduler = require('./src/scheduler');
     startAppointmentScheduler();
     console.log('✓ Scheduler démarré');
-
-    if (isProduction && nextApp) {
-      try {
-        await nextApp.prepare();
-        console.log('✓ Next.js prêt (mode production)');
-        app.all('/{*splat}', (req, res) => {
-          return handleNext(req, res);
-        });
-      } catch (nextErr) {
-        console.error('⚠ Next.js non disponible (pas de build):', nextErr.message);
-        console.log('→ Le backend API fonctionne sans Next.js');
-      }
-    }
   } catch (err) {
     console.error('Erreur de démarrage:', err.message);
     console.error(err.stack);
