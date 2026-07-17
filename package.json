@@ -6,10 +6,17 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pm2:start": "pm2 start ecosystem.config.js",
+    "pm2:stop": "pm2 stop bkmed",
+    "pm2:restart": "pm2 restart bkmed",
+    "pm2:logs": "pm2 logs bkmed",
+    "postinstall": "mkdir -p uploads/profils uploads/documents uploads/vehicules logs"
   },
-  "keywords": [],
-  "author": "",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["medconnect", "sante", "api", "backend"],
+  "author": "curtis",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
