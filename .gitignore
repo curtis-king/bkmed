@@ -1,0 +1,7 @@
+node_modules/
+.env
+uploads/
+stdout.txt
+stderr.txt
+npm-debug.log
+dist/

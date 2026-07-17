@@ -1,0 +1,42 @@
+{
+  "name": "bkmed",
+  "version": "1.0.0",
+  "description": "MedConnect Backend API - Sante connectee en Republique du Congo",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "axios": "^1.18.1",
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "geolib": "^3.3.14",
+    "jimp": "^1.6.1",
+    "jsonwebtoken": "^9.0.3",
+    "jsqr": "^1.4.0",
+    "multer": "^2.1.1",
+    "mysql2": "^3.22.5",
+    "next": "16.2.7",
+    "node-cron": "^4.3.0",
+    "nodemailer": "^9.0.1",
+    "otplib": "^13.4.1",
+    "pdfkit": "^0.18.0",
+    "qrcode": "^1.5.4",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "sequelize": "^6.37.8",
+    "sharp": "^0.34.5",
+    "socket.io": "^4.8.3",
+    "uuid": "^14.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
